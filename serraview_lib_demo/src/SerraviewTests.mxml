@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/mx"
+               xmlns:flexui="http://www.adobe.com/2009/flexUnitUIRunner"
+               minWidth="955"
+               minHeight="600"
+               creationComplete="onCreationComplete()">
+    <fx:Script>
+        <![CDATA[
+            import com.serraview.tests.SerraviewTestSuite;
+
+            import org.flexunit.runner.FlexUnitCore;
+
+
+            protected function onCreationComplete() : void
+            {
+                var core : FlexUnitCore = new FlexUnitCore();
+                core.addListener(testRunner);
+                core.run(com.serraview.tests.SerraviewTestSuite);
+            }
+        ]]>
+    </fx:Script>
+
+    <flexui:TestRunnerBase id="testRunner"
+                           width="100%"
+                           height="100%"/>
+</s:Application>
