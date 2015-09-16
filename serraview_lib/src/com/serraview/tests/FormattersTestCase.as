@@ -2,7 +2,7 @@ package com.serraview.tests
 {
     import com.serraview.formatters.DataFormatter;
     import com.serraview.utils.StringUtils;
-    
+
     import flexunit.framework.TestCase;
 
     public class FormattersTestCase extends TestCase
@@ -38,7 +38,12 @@ package com.serraview.tests
                 [3.3, '###.###', '3,3'],
                 [9322, '### .###', '9,322'],
                 ['9322', '###.### ', '9,322'],
-                ['-32', '#.????', '-32,0   ']
+                ['9322', '###.###_', '9,322'],
+                ['-32', '#.0???', '-32,0   '],
+                [12000, '#,###', '12 000'],
+                [12000, '#_', '12'],
+                [12200000, '0.0__', '12,2'],
+                [12200.909, '-#,##0.00', '-12 200,91']
                 ];
 
             testFormat(tests);
@@ -50,7 +55,7 @@ package com.serraview.tests
             var tests : Array = [
                 [0.453, '0.0%', '45,3%'],
                 [0.453, '0.0%%', '4530,0%%'],
-                [53, '0.##%', '5300,0%'],
+                [53, '0.0#%', '5300,0%'],
                 ['432', '0.## %', '43,2%'],
                 ['-10', '0%', '-1000%']
                 ];
@@ -62,7 +67,8 @@ package com.serraview.tests
         public function testCurrencyFormat() : void
         {
             var tests : Array = [
-                [234, '$#,##0.00', '$234']
+                [2340, '$#,##0.00', '$2 340,00'],
+                [2340, '[$¥-411]#,##0.0', '[$¥-411]2 340,0'],
                 ];
 
             testFormat(tests);
@@ -77,9 +83,9 @@ package com.serraview.tests
                 var formattedResult : String = DataFormatter.format(data[0], data[1], locale);
                 var expectedResult : String = data[2];
 
-                assertEquals(label, formattedResult, expectedResult);
+                assertEquals(label, expectedResult, formattedResult);
 
-                trace(label, formattedResult, expectedResult);
+                trace(label, expectedResult, formattedResult);
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.serraview.formatters
 {
     import com.serraview.core.IDataFormatter;
-    import com.serraview.utils.ObjectUtils;
 
     public class EmptyDataFormatter implements IDataFormatter
     {
@@ -11,9 +10,8 @@ package com.serraview.formatters
 
         public function format(data : Object, format : String, locale : String = null) : String
         {
-            trace('ERROR: Format "' + format + '" not supported or data is not valid.')
-            trace('DEBUG: ');
-            trace(ObjectUtils.toDebugString(data));
+            debug('ERROR: Format "' + format + '" not supported or data is not valid.')
+            debug(data)
 
             return data != null ? data.toString() : '';
         }

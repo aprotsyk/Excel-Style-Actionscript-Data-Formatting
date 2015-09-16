@@ -3,7 +3,7 @@ package com.serraview.formatters
     import com.serraview.constants.I18n;
     import com.serraview.constants.StyleNames;
     import com.serraview.core.IDataFormatter;
-    
+
     import spark.formatters.DateTimeFormatter;
 
     public class DateTimeDataFormatter implements IDataFormatter

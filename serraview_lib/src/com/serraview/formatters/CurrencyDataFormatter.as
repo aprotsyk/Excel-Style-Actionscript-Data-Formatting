@@ -11,7 +11,7 @@ package com.serraview.formatters
 
         override public function format(data : Object, format : String, locale : String = null) : String
         {
-            return 'currency';
+            return '';
         }
     }
 }
