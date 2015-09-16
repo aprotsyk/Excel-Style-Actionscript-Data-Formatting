@@ -23,10 +23,15 @@ package
             }
             else
             {
+                if (!StringUtils.empty(message))
+                {
+                    message += "\n";
+                }
+
                 message += ObjectUtils.toDebugString(argument);
             }
         }
 
-        trace('[DEBUG]-->' + message);
+        trace('[DEBUG]:' + message);
     }
 }

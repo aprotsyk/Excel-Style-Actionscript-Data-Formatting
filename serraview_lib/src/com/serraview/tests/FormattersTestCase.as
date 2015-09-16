@@ -2,7 +2,7 @@ package com.serraview.tests
 {
     import com.serraview.formatters.DataFormatter;
     import com.serraview.utils.StringUtils;
-
+    
     import flexunit.framework.TestCase;
 
     public class FormattersTestCase extends TestCase
@@ -85,7 +85,7 @@ package com.serraview.tests
 
                 assertEquals(label, expectedResult, formattedResult);
 
-                trace(label, expectedResult, formattedResult);
+				debug(label, {expected: expectedResult, result: formattedResult});
             }
         }
     }

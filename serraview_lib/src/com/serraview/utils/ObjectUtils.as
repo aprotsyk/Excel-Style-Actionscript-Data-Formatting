@@ -16,8 +16,11 @@ package com.serraview.utils
             var debugInfo : String = '';
             if (obj != null)
             {
-                debugInfo = 'toString() is ' + obj.toString() + "\n";
-                debugInfo += classInfo.name + ":\n";
+                if (classInfo.name != 'Object')
+                {
+                    debugInfo += classInfo.name + ":\n";
+                }
+
                 for each (var propName : String in classInfo.properties)
                 {
                     if (obj[propName])
