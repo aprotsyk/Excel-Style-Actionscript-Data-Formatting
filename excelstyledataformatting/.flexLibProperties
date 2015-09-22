@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="com.excelstyledataformatting.collections.HashMap"/>
+    <classEntry path="com.excelstyledataformatting.constants.I18n"/>
+    <classEntry path="com.excelstyledataformatting.constants.StyleNames"/>
+    <classEntry path="com.excelstyledataformatting.core.IDataFormatter"/>
+    <classEntry path="com.excelstyledataformatting.core.IMap"/>
+    <classEntry path="com.excelstyledataformatting.formatters.DataFormatter"/>
+    <classEntry path="com.excelstyledataformatting.formatters.DataFormatterBase"/>
+    <classEntry path="com.excelstyledataformatting.formatters.DateTimeDataFormatter"/>
+    <classEntry path="com.excelstyledataformatting.formatters.EmptyDataFormatter"/>
+    <classEntry path="com.excelstyledataformatting.formatters.NumberDataFormatter"/>
+    <classEntry path="com.excelstyledataformatting.utils.ObjectUtils"/>
+    <classEntry path="com.excelstyledataformatting.utils.StringUtils"/>
+    <classEntry path="debug"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
