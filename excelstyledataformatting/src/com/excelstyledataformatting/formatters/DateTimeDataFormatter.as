@@ -1,22 +1,12 @@
 package com.excelstyledataformatting.formatters
 {
+    import com.excelstyledataformatting.constants.I18n;
     import com.excelstyledataformatting.utils.StringUtils;
-
-    import spark.formatters.DateTimeFormatter;
+    
+    import flash.globalization.DateTimeFormatter;
 
     public class DateTimeDataFormatter extends DataFormatterBase
     {
-        protected function get formatter() : DateTimeFormatter
-        {
-            if (!_formatter)
-            {
-                _formatter = new DateTimeFormatter();
-                _formatter.useUTC = true;
-            }
-
-            return _formatter;
-        }
-
         public function DateTimeDataFormatter()
         {
             super();
@@ -28,8 +18,6 @@ package com.excelstyledataformatting.formatters
 
             if (StringUtils.empty(result))
             {
-                setLocale(formatter, locale);
-
                 var formatCacheKey : String = getFormatCacheKey(format, locale);
 
                 if (!cache.containsKey(formatCacheKey))
@@ -47,9 +35,10 @@ package com.excelstyledataformatting.formatters
                     format = cache.getValue(formatCacheKey) as String;
                 }
 
-                formatter.dateTimePattern = format;
+                var formatter : DateTimeFormatter = getFormatterByLocale(locale);
+                formatter.setDateTimePattern(format);
 
-                result = formatter.format(data);
+                result = formatter.formatUTC(data as Date);
 
                 cache.add(getResultCacheKey(data, format, locale), result);
             }
@@ -57,6 +46,30 @@ package com.excelstyledataformatting.formatters
             return result;
         }
 
-        private var _formatter : DateTimeFormatter;
+        protected function getFormatterByLocale(locale : String) : DateTimeFormatter
+        {
+            locale = I18n.locale[locale];
+
+            var formatter : DateTimeFormatter;
+            var formatterCacheKey : String = getFormatterCacheKey(locale);
+
+            if (cache.containsKey(formatterCacheKey))
+            {
+                formatter = cache.getValue(formatterCacheKey) as DateTimeFormatter;
+            }
+            else
+            {
+                formatter = new DateTimeFormatter(locale);
+
+                cache.add(formatterCacheKey, formatter);
+            }
+
+            return formatter;
+        }
+
+        protected function getFormatterCacheKey(locale : String) : String
+        {
+            return 'formatter' + CACHE_SEPARATOR + locale;
+        }
     }
 }

@@ -2,22 +2,11 @@ package com.excelstyledataformatting.formatters
 {
     import com.excelstyledataformatting.utils.StringUtils;
 
-    import spark.formatters.NumberFormatter;
-
     public class NumberDataFormatter extends DataFormatterBase
     {
-        protected function get formatter() : NumberFormatter
-        {
-            if (!_formatter)
-            {
-                _formatter = new NumberFormatter();
-                _formatter.useGrouping = false;
-                _formatter.decimalSeparator = ',';
-                _formatter.groupingSeparator = ' ';
-            }
+        public var decimalSeparator : String = ',';
 
-            return _formatter;
-        }
+        public var groupingSeparator : String = ' ';
 
         public function NumberDataFormatter()
         {
@@ -27,12 +16,9 @@ package com.excelstyledataformatting.formatters
         override public function format(data : Object, format : String, locale : String = null) : String
         {
             var result : String = super.format(data, format, locale);
-            ;
 
             if (StringUtils.empty(result))
             {
-                setLocale(formatter, locale);
-
                 var value : Number = Number(data);
                 var percentageSuffix : String = '';
 
@@ -79,7 +65,7 @@ package com.excelstyledataformatting.formatters
 
                 if (!StringUtils.empty(formattedDecimalValue))
                 {
-                    result += formatter.decimalSeparator + formattedDecimalValue;
+                    result += decimalSeparator + formattedDecimalValue;
                 }
 
                 if (!StringUtils.empty(percentageSuffix))
@@ -112,7 +98,7 @@ package com.excelstyledataformatting.formatters
                 j = stringValue.length - 3;
                 while ((stringValue.charAt(0) == '-' ? j > 1 : j > 0))
                 {
-                    stringValue = stringValue.substr(0, j) + formatter.groupingSeparator + stringValue.substr(j);
+                    stringValue = stringValue.substr(0, j) + groupingSeparator + stringValue.substr(j);
                     j -= 3;
                 }
             }
@@ -123,7 +109,7 @@ package com.excelstyledataformatting.formatters
             {
                 ref = null
 
-                if (stringValue.charAt(j) == formatter.groupingSeparator)
+                if (stringValue.charAt(j) == groupingSeparator)
                 {
                     ref = stringValue.charAt(j);
                     result = ref + result;
@@ -208,8 +194,6 @@ package com.excelstyledataformatting.formatters
             }
             return result;
         }
-
-        private var _formatter : NumberFormatter;
 
         private const _spacesRegExp : RegExp = /([,_\s]*)$/;
 
